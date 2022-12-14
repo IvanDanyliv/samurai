@@ -8,6 +8,7 @@ import {
   Routes,
   Route
 } from "react-router-dom";
+import { addPost } from './redux/state';
 
 const App = (props) => {
   return (
@@ -17,10 +18,12 @@ const App = (props) => {
         <Navbar />
         <div className='app_wrapper_content'>
           <Routes>
-            <Route path="/dialogs" element={<Dialogs 
-                                            dialogs={props.dialogs}
-                                            messages={props.messages}  />} />
-            <Route path="/profile" element={<Profile />} />
+            <Route path="/dialogs" element={<Dialogs
+              dialogs={props.state.dialogsPage.dialogs}
+              messages={props.state.dialogsPage.messages} />} />
+            <Route path="/profile" element={<Profile
+              posts={props.state.profilePage.posts}
+              addPost={addPost} />} />
           </Routes>
         </div>
       </div>
